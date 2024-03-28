@@ -1,6 +1,6 @@
 import CardSearchInputIcon from "@/assets/svg/CardSearchInputIcon";
 import styles from "./CardSearchInput.module.scss";
-import CardSearchCancelIcon from "@/assets/svg/CardSearchCancelIcon";
+import CloseIcon from "@/assets/svg/CloseIcon";
 
 interface CardSearchInputProps {
   handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -22,7 +22,7 @@ export default function CardSearchInput({
         type="search"
       />
       <div className={styles.cancelIcon}>
-        <CardSearchCancelIcon />
+        <CloseIcon />
       </div>
     </div>
   );

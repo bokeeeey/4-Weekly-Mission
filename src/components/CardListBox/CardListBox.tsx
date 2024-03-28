@@ -1,13 +1,14 @@
 import { ChangeEvent, useEffect, useState } from "react";
-import CardSearchInput from "./CardSearchInput/CardSearchInput.tsx";
-import useGet from "../../hooks/useGet";
-import CardFolderList from "./CardFolderList/CardFolderList.tsx";
-import styles from "./CardListBox.module.scss";
-import CardList from "../CardList/CardList.tsx";
 import { END_POINT } from "../../constants/index.ts";
-import getFormattedLinks from "@/utils/getFormattedLinks.ts";
-import LinksEmptyCase from "./LinksEmptyCase/LinksEmptyCase.tsx";
 import { FormatLink, ObjectLink, ObjectFolder } from "@/constants/index.types";
+import useGet from "../../hooks/useGet";
+import getFormattedLinks from "@/utils/getFormattedLinks.ts";
+import CardSearchInput from "./CardSearchInput/CardSearchInput.tsx";
+import CardFolderList from "./CardFolderList/CardFolderList.tsx";
+import CardList from "../CardList/CardList.tsx";
+import LinksEmptyCase from "./LinksEmptyCase/LinksEmptyCase.tsx";
+import CardModals from "./CardModals/CardModals.tsx";
+import styles from "./CardListBox.module.scss";
 
 export default function CardListBox() {
   // 북마크 Folders 상태
@@ -93,7 +94,9 @@ export default function CardListBox() {
         />
         <div className={styles.titleBox}>
           <h1 className={styles.linksTitle}>{linksTitle}</h1>
-          모달 추가 예정
+          <div className={styles.Modals}>
+            <CardModals />
+          </div>
         </div>
         {links && links.length > 0 ? (
           <CardList links={links} />
