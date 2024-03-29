@@ -3,6 +3,7 @@ import { useFetchData } from "@/src/hooks/useFetchData";
 import LinkList from "./LinkList/LinkList";
 import getFormattedLinks from "@/src/utils/getFormattedLinks";
 import FavoriteButtonList from "./FavoriteButtonList/FavoriteButtonList";
+import LinkSearchBar from "./LinkSearchBar/LinkSearchBar";
 
 export default async function LinkManager() {
   // data fetch 를 page에서 내려보기 = 구조만 변경되도록 설계
@@ -44,6 +45,7 @@ export default async function LinkManager() {
 
   return (
     <>
+      <LinkSearchBar />
       {favorites ? <FavoriteButtonList favorites={favorites.data} /> : <></>}
       <LinkList links={links} />
     </>

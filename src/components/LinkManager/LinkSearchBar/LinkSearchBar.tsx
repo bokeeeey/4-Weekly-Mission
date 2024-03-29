@@ -1,7 +1,10 @@
+import { MagnifierIcon, XIcon } from "@/src/asset";
+import styles from "./LinkSearchBar.module.scss";
+
 export default function LinkSearchBar({ handleInputChange, value }) {
   return (
-    <div className={styles.CardSearchInput}>
-      <CardSearchInputIcon />
+    <div className={styles.LinkSearchBar}>
+      <MagnifierIcon />
       <input
         className={styles.input}
         onChange={handleInputChange}
@@ -10,7 +13,7 @@ export default function LinkSearchBar({ handleInputChange, value }) {
         type="search"
       />
       <div className={styles.cancelIcon}>
-        <CloseIcon />
+        <XIcon />
       </div>
     </div>
   );
