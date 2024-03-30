@@ -17,3 +17,13 @@ export interface Favorite {
     count: number;
   };
 }
+
+export interface SharedPageTypes {
+  name: string;
+  owner: {
+    profileImageSource: string;
+    name: string;
+  };
+  links: Link[];
+  count: number;
+}

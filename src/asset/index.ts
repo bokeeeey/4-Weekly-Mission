@@ -6,3 +6,4 @@ export { default as WhiteFacebookIcon } from "./svg/WhiteFacebookIcon";
 export { default as LinkImageEmptyCase } from "./svg/LinkImageEmptyCase";
 export { default as MagnifierIcon } from "./svg/MagnifierIcon";
 export { default as XIcon } from "./svg/XIcon";
+export { default as ChainIcon } from "./svg/ChainIcon";

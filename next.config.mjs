@@ -4,6 +4,7 @@ const nextConfig = {
     // domains는 권장하지 않는 스타일
     // domains: ["codeit-images.codeit.com"],
     remotePatterns: [
+      // folder page images
       {
         protocol: "https",
         hostname: "codeit-images.codeit.com",
@@ -51,6 +52,24 @@ const nextConfig = {
       {
         protocol: "https",
         hostname: "codeit.kr",
+      },
+
+      // shared page images
+      {
+        protocol: "https",
+        hostname: "codeit-frontend.codeit.com",
+      },
+      {
+        protocol: "https",
+        hostname: "reactjs.org",
+      },
+      {
+        protocol: "https",
+        hostname: "tanstack.com",
+      },
+      {
+        protocol: "https",
+        hostname: "static.cdninstagram.com",
       },
     ],
   },

@@ -2,18 +2,29 @@
 import LinkList from "./LinkList/LinkList";
 import FavoriteButtonList from "./FavoriteButtonList/FavoriteButtonList";
 import LinkSearchBar from "./LinkSearchBar/LinkSearchBar";
-import { Favorite, Link as LinkType } from "@/src/constants/types";
+import {
+  Favorite,
+  Link as LinkType,
+  SharedPageTypes,
+} from "@/src/constants/types";
 import { ChangeEvent, useEffect, useState } from "react";
 import LinkEmptyCase from "./LinkList/LinkEmptyCase/LinkEmptyCase";
 import { END_POINT } from "@/src/constants";
 import getFormattedLinks from "@/src/utils/getFormattedLinks";
+import AddLinkBar from "./AddLinkBar/AddLinkBar";
+import UserProfile from "./UserProfile/UserProfile";
 
 interface LinkManager {
   links: LinkType[];
   favorites?: Favorite[];
+  userProfile?: SharedPageTypes;
 }
 
-export default function LinkManager({ links, favorites }: LinkManager) {
+export default function LinkManager({
+  links,
+  favorites,
+  userProfile,
+}: LinkManager) {
   // 렌더링되는 Links 배열 상태
   const [favoriteLinks, setFavoriteLinks] = useState(links);
   // LinkList title 상태
@@ -60,6 +71,7 @@ export default function LinkManager({ links, favorites }: LinkManager) {
 
   return (
     <>
+      {userProfile ? <UserProfile userProfile={userProfile} /> : <AddLinkBar />}
       <LinkSearchBar handleLinkSearch={handleLinkSearch} />
       {favorites && (
         <>
