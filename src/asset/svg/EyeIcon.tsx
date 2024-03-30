@@ -1,6 +1,6 @@
 interface EyeIcon {
-  visible: boolean;
-  handleEyeIconClick: () => void;
+  visible?: boolean;
+  handleEyeIconClick?: () => void;
 }
 
 export default function EyeIcon({ visible, handleEyeIconClick }: EyeIcon) {

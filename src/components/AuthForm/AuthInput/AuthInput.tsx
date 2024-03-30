@@ -1,7 +1,10 @@
 "use client";
-import styles from "./AuthInput.module.scss";
-import EyeIcon from "@/src/asset/svg/EyeIcon";
+
 import { useState } from "react";
+
+import EyeIcon from "@/src/asset/svg/EyeIcon";
+
+import styles from "./AuthInput.module.scss";
 
 interface AuthInput {
   placeholder: string;

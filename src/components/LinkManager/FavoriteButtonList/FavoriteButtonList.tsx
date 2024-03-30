@@ -1,27 +1,27 @@
+import { Favorite } from "@/src/constants/types";
 import FavoriteButton from "./FavoriteButton/FavoriteButton";
 import styles from "./FavoriteButtonList.module.scss";
 
+interface FavoriteButtonList {
+  favorites?: Favorite[];
+  handlefavoriteClick: (favorite?: Favorite | null) => void;
+}
+
 export default function FavoriteButtonList({
   favorites,
-  // onFolderClick,
-  // onTotalButtonClick,
-}) {
+  handlefavoriteClick,
+}: FavoriteButtonList) {
   return (
     <section className={styles.FavoriteButtonList}>
-      <button
-        className={styles.totalBtn}
-        // onClick={onTotalButtonClick}
-        type="button"
-      >
-        전체
-      </button>
-      {favorites.map((favorite) => (
-        <FavoriteButton
-          // onFolderClick={onFolderClick}
-          key={favorite.id}
-          favorite={favorite}
-        />
-      ))}
+      <FavoriteButton handlefavoriteClick={handlefavoriteClick} />
+      {favorites &&
+        favorites.map((favorite) => (
+          <FavoriteButton
+            key={favorite.id}
+            favorite={favorite}
+            handlefavoriteClick={handlefavoriteClick}
+          />
+        ))}
     </section>
   );
 }
