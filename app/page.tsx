@@ -1,11 +1,11 @@
-import AuthInput from "@/src/components/AuthForm/AuthInput/AuthInput";
+import styles from "./page.module.scss";
+import AuthLabel from "@/src/components/AuthForm/AuthLabel/AuthLabel";
 
 export default function Home() {
   return (
     <>
-      홈페이지 입니다
-      <div>
-        <AuthInput placeholder={"인풋입니다"} type="password" />
+      <div className={styles.input}>
+        <AuthLabel />
       </div>
     </>
   );

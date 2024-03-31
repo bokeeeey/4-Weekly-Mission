@@ -1,0 +1,22 @@
+.LinkManager {
+  width: 100%;
+
+  .addLinkManager {
+    padding: 60px 32px 90px;
+    background: var(--Linkbrary-bg, #f0f6ff);
+    position: relative;
+  }
+
+  .fixedAddLinkManager {
+    visibility: hidden;
+  }
+
+  .addLinkBarVisible {
+    position: fixed;
+    bottom: 0;
+    visibility: visible;
+    width: 100%;
+    padding: 24px 32px;
+    background: var(--Linkbrary-bg, #f0f6ff);
+  }
+}

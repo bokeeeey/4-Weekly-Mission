@@ -27,3 +27,12 @@ export interface SharedPageTypes {
   links: Link[];
   count: number;
 }
+
+export interface FormatLink {
+  id: string;
+  image_source: string;
+  created_at: Date;
+  description: string;
+  title: string;
+  url: string;
+}

@@ -1,4 +1,4 @@
-import { FormatLink } from "@/constants/index.types";
+import { FormatLink } from "../constants/types";
 
 function formatLinkData(link: FormatLink) {
   return {
