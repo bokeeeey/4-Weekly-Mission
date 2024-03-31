@@ -1,9 +1,10 @@
-import Input from "../../Input/Input";
+// import Input from "../../Input/Input";
 
-export default function AuthLabel() {
-  return (
-    <>
-      <Input />
-    </>
-  );
-}
+// export default function AuthLabel({ isError, errorMessage }) {
+//   return (
+//     <>
+//       <Input />
+//       {isError && <div>{errorMessage}</div>}
+//     </>
+//   );
+// }
