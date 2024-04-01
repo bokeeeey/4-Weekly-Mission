@@ -1,20 +1,28 @@
 import { MagnifierIcon, XIcon } from "@/src/asset";
-import styles from "./LinkSearchBar.module.scss";
+
 import { ChangeEvent } from "react";
 
-interface LinkSearchBar {
-  handleLinkSearch: (e: ChangeEvent<HTMLInputElement>) => void;
+import styles from "./LinkSearchBar.module.scss";
+
+interface LinkSearchBarProps {
+  onSearchValue: (e: ChangeEvent<HTMLInputElement>) => void;
+  inputValue: any;
 }
 
-export default function LinkSearchBar({ handleLinkSearch }: LinkSearchBar) {
+export default function LinkSearchBar({
+  onSearchValue,
+  inputValue,
+}: LinkSearchBarProps) {
   return (
     <div className={styles.LinkSearchBar}>
       <MagnifierIcon />
+      {/* input component로 바꿔보자 */}
       <input
         className={styles.input}
-        onChange={handleLinkSearch}
+        onChange={onSearchValue}
         placeholder="링크를 검색해 보세요."
         type="search"
+        value={inputValue}
       />
       <div className={styles.cancelIcon}>
         <XIcon />

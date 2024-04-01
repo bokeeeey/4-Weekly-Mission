@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { LinkbraryLogo } from "@/src/asset";
+import { LinkbraryIcon } from "@/src/asset";
 import styles from "./Header.module.scss";
 import { END_POINT } from "@/src/constants";
 import Image from "next/image";
@@ -13,7 +13,7 @@ export default async function Header() {
     <header className={styles.header}>
       <nav className={styles.headerBox}>
         <Link href="/">
-          <LinkbraryLogo />
+          <LinkbraryIcon />
         </Link>
         {userData ? (
           <section className={styles.profileBox}>

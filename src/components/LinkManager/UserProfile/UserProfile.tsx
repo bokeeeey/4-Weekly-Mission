@@ -1,13 +1,14 @@
 import Image from "next/image";
 import styles from "./UserProfile.module.scss";
-import { SharedPageTypes } from "@/src/constants/types";
+import { UserProfile as TUserProfile } from "@/src/constants/types";
 
-interface UserProfile {
-  userProfile: SharedPageTypes;
+interface UserProfileProps {
+  userProfile: TUserProfile;
 }
 
-export default function UserProfile({ userProfile }: UserProfile) {
+export default function UserProfile({ userProfile }: UserProfileProps) {
   const { name, owner } = userProfile;
+
   return (
     <section className={styles.UserProfile}>
       <article className={styles.profileInfos}>

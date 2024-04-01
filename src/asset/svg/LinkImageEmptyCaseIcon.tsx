@@ -1,13 +1,13 @@
-export default function Logo() {
+export default function LinkImageEmptyCaseIcon() {
   return (
-    <div>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="133"
-        height="24"
-        viewBox="0 0 133 24"
-        fill="none"
-      >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="133"
+      height="24"
+      viewBox="0 0 133 24"
+      fill="none"
+    >
+      <g opacity="0.2">
         <path
           d="M5.20583 15.7049V0.792232H0V20.2718H14.9638V15.7049H5.20583Z"
           fill="#6D6AFE"
@@ -44,7 +44,7 @@ export default function Logo() {
           d="M127.794 5.12621V11.7204C127.234 12.3495 126.23 12.6058 125.063 12.6058C122.588 12.6058 121.865 11.8369 121.865 10.4155V5.12621H116.659V10.7883C116.659 14.9359 119.6 17.1728 123.686 17.1728C125.203 17.1728 126.604 16.8466 127.794 16.2874V16.8466C127.794 18.9204 127 19.666 124.946 19.666C123.242 19.666 122.425 19.1534 122.191 17.965H116.962C117.383 22.2524 119.694 24 124.946 24C130.666 24 133 21.9029 133 16.4505V5.12621H127.794Z"
           fill="#6D6AFE"
         />
-      </svg>
-    </div>
+      </g>
+    </svg>
   );
 }

@@ -1,13 +1,14 @@
 import Link from "next/link";
 import styles from "./LinkOverview.module.scss";
-import { Link as LinkType } from "@/src/constants/types";
+import { Link as TLink } from "@/src/constants/types";
 import getElapsedTime from "@/src/utils/getElapsedTime";
 import getFormattedDate from "@/src/utils/getFormattedDate";
-import { LinkImageEmptyCase } from "@/src/asset/";
+import { LinkImageEmptyCaseIcon } from "@/src/asset/";
 import Image from "next/image";
+import getValidUrl from "@/src/utils/getValidUrl";
 
 interface LinkOverview {
-  link: LinkType;
+  link: TLink;
 }
 
 export default function LinkOverview({ link }: LinkOverview) {
@@ -16,17 +17,8 @@ export default function LinkOverview({ link }: LinkOverview) {
   const formatDate = getFormattedDate(createdAt);
 
   // 서버 Image-url이 문제가 있어서 그냥 null처리 했읍니다
-  function fixedUrl(url: string) {
-    if (!url) return null;
 
-    if (url.startsWith(`https:`)) {
-      return url;
-    } else {
-      return null;
-    }
-  }
-
-  const imageSource = fixedUrl(imageUrl);
+  const imageSource = getValidUrl(imageUrl);
 
   return (
     <Link href={url} className={styles.LinkOverview}>
@@ -36,14 +28,18 @@ export default function LinkOverview({ link }: LinkOverview) {
         </figure>
       ) : (
         <figure className={styles.emptyCaseBox}>
-          <LinkImageEmptyCase />
+          <LinkImageEmptyCaseIcon />
         </figure>
       )}
-      <figcaption className={styles.caption}>
-        <time className={styles.updatedAt}>{createDate}</time>
+      <div className={styles.caption}>
+        <time className={styles.updatedAt} dateTime={createdAt}>
+          {createDate}
+        </time>
         <p className={styles.description}>{description}</p>
-        <time className={styles.createdAt}>{formatDate}</time>
-      </figcaption>
+        <time className={styles.createdAt} dateTime={createdAt}>
+          {formatDate}
+        </time>
+      </div>
     </Link>
   );
 }

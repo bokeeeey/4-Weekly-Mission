@@ -1,4 +1,4 @@
-export default function getElapsedTime(createAt: Date) {
+export default function getElapsedTime(createAt: string) {
   const currentDate = new Date();
   const createdDate = new Date(createAt);
   const elapsedTimeInMinutes = Math.floor(

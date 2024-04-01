@@ -1,7 +1,7 @@
 export interface Link {
   id: string;
   imageSource: string;
-  createdAt: Date;
+  createdAt: string;
   description: string;
   title: string;
   url: string;
@@ -9,7 +9,7 @@ export interface Link {
 
 export interface Favorite {
   id: number;
-  created_at: Date;
+  created_at: string;
   name: string;
   user_id: number;
   favorite: boolean;
@@ -18,7 +18,7 @@ export interface Favorite {
   };
 }
 
-export interface SharedPageTypes {
+export interface UserProfile {
   name: string;
   owner: {
     profileImageSource: string;
@@ -31,7 +31,7 @@ export interface SharedPageTypes {
 export interface FormatLink {
   id: string;
   image_source: string;
-  created_at: Date;
+  created_at: string;
   description: string;
   title: string;
   url: string;

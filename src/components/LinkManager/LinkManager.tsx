@@ -1,32 +1,31 @@
-// client component 선언
 "use client";
-// react
+
 import { ChangeEvent, use, useEffect, useRef, useState } from "react";
-// fetch API
+
 import { END_POINT } from "@/src/constants";
-// component
+
 import LinkList from "./LinkList/LinkList";
 import FavoriteButtonList from "./FavoriteButtonList/FavoriteButtonList";
 import LinkSearchBar from "./LinkSearchBar/LinkSearchBar";
 import LinkEmptyCase from "./LinkList/LinkEmptyCase/LinkEmptyCase";
 import AddLinkBar from "./AddLinkBar/AddLinkBar";
 import UserProfile from "./UserProfile/UserProfile";
-// types
+
 import {
   Favorite,
-  Link as LinkType,
-  SharedPageTypes,
+  Link as TLink,
+  UserProfile as TUserProfile,
 } from "@/src/constants/types";
-// utils
+
 import getFormattedLinks from "@/src/utils/getFormattedLinks";
 import useIntersectionObserver from "@/src/hooks/useIntersectionObserver";
-// style sheet
+
 import styles from "./LinkManager.module.scss";
 
 interface LinkManager {
-  links: LinkType[];
+  links: TLink[];
   favorites?: Favorite[];
-  userProfile?: SharedPageTypes;
+  userProfile?: TUserProfile;
 }
 
 export default function LinkManager({
@@ -77,7 +76,7 @@ export default function LinkManager({
   };
 
   // LinkSearchBar의 onChangeEvent
-  const handleLinkSearch = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleSearchValue = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
   };
 
@@ -108,7 +107,10 @@ export default function LinkManager({
           <AddLinkBar />
         </div>
       )}
-      <LinkSearchBar handleLinkSearch={handleLinkSearch} />
+      <LinkSearchBar
+        onSearchValue={handleSearchValue}
+        inputValue={searchValue}
+      />
       {favorites && (
         <>
           <FavoriteButtonList
@@ -126,7 +128,7 @@ export default function LinkManager({
         <LinkEmptyCase />
       )}
       {/* footer의 ref를 잡을 수 없어서 임의로 만들었습니다 */}
-      <div ref={footerRef}></div>
+      <div ref={footerRef} />
       <div className={`${styles.fixedAddLinkManager} ${className}`}>
         <AddLinkBar />
       </div>

@@ -1,9 +1,9 @@
-interface EyeIcon {
+interface EyeIconProps {
   visible?: boolean;
   handleEyeIconClick?: () => void;
 }
 
-export default function EyeIcon({ visible, handleEyeIconClick }: EyeIcon) {
+export default function EyeIcon({ visible, handleEyeIconClick }: EyeIconProps) {
   return (
     <>
       {visible ? (

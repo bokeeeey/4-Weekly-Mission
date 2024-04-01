@@ -10,14 +10,12 @@ async function getFetchData(url: string) {
     return result;
   } catch (error) {
     if (error instanceof Error) {
-      // alert(error.message);
       console.error(error.message);
     }
   }
 }
 
-export default async function page() {
-  // links data fetch
+export default async function sharedPage() {
   const sharedPageDatas = await getFetchData(END_POINT.SHARED_LINKS);
 
   return (

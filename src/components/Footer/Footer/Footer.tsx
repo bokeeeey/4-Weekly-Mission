@@ -17,16 +17,24 @@ export default function Footer() {
       </div>
       <ul className={styles.snsBox}>
         <li>
-          <WhiteFacebookIcon />
+          <a href="https://www.facebook.com" target="_blank">
+            <WhiteFacebookIcon />
+          </a>
         </li>
         <li>
-          <WhiteTwitterIcon />
+          <a href="https://twitter.com" target="_blank">
+            <WhiteTwitterIcon />
+          </a>
         </li>
         <li>
-          <WhiteYoutubeIcon />
+          <a href="https://www.youtube.com" target="_blank">
+            <WhiteYoutubeIcon />
+          </a>
         </li>
         <li>
-          <WhiteInstagramIcon />
+          <a href="https://www.instagram.com" target="_blank">
+            <WhiteInstagramIcon />
+          </a>
         </li>
       </ul>
     </footer>

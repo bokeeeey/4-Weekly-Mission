@@ -2,7 +2,7 @@ import { Favorite } from "@/src/constants/types";
 import FavoriteButton from "./FavoriteButton/FavoriteButton";
 import styles from "./FavoriteButtonList.module.scss";
 
-interface FavoriteButtonList {
+interface FavoriteButtonListProps {
   favorites?: Favorite[];
   handlefavoriteClick: (favorite?: Favorite | null) => void;
 }
@@ -10,16 +10,16 @@ interface FavoriteButtonList {
 export default function FavoriteButtonList({
   favorites,
   handlefavoriteClick,
-}: FavoriteButtonList) {
+}: FavoriteButtonListProps) {
   return (
     <section className={styles.FavoriteButtonList}>
-      <FavoriteButton handlefavoriteClick={handlefavoriteClick} />
+      <FavoriteButton onFavoriteClick={handlefavoriteClick} />
       {favorites &&
         favorites.map((favorite) => (
           <FavoriteButton
             key={favorite.id}
             favorite={favorite}
-            handlefavoriteClick={handlefavoriteClick}
+            onFavoriteClick={handlefavoriteClick}
           />
         ))}
     </section>
