@@ -2,8 +2,7 @@
 import { useState } from "react";
 import Input from "./Input/Input";
 import styles from "./InputField.module.scss";
-import EyeOnIcon from "@/src/asset/svg/EyeOnIcon";
-import EyeOffIcon from "@/src/asset/svg/EyeOffIcon";
+import { EyeOffIcon, EyeOnIcon } from "@/src/asset";
 
 interface InputField {
   type: string;

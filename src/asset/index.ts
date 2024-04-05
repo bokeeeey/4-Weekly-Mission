@@ -7,4 +7,5 @@ export { default as LinkImageEmptyCaseIcon } from "./svg/LinkImageEmptyCaseIcon"
 export { default as MagnifierIcon } from "./svg/MagnifierIcon";
 export { default as XIcon } from "./svg/XIcon";
 export { default as ChainIcon } from "./svg/ChainIcon";
-export { default as EyeIcon } from "./svg/EyeIcon";
+export { default as EyeOffIcon } from "./svg/EyeOffIcon";
+export { default as EyeOnIcon } from "./svg/EyeOnIcon";
