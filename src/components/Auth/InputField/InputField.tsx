@@ -31,7 +31,7 @@ export default function InputField({
     setInputType(type);
   };
 
-  const errorState = isError ? "error" : null;
+  const errorState = isError ? "error" : "";
   const eyeToggleIcon = isVisible ? <EyeOnIcon /> : <EyeOffIcon />;
   const errorMessage =
     name === "email"
