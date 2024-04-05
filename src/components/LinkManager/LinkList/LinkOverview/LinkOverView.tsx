@@ -21,7 +21,7 @@ export default function LinkOverview({ link }: LinkOverview) {
   const imageSource = getValidUrl(imageUrl);
 
   return (
-    <Link href={url} className={styles.LinkOverview}>
+    <Link href={url} className={styles.LinkOverview} target="_blank">
       {imageSource ? (
         <figure className={styles.imgBox}>
           <Image width={340} height={200} src={imageSource} alt={title} />
