@@ -17,6 +17,7 @@ export default function Auth() {
         icon="eyeToggle"
         placeholder={passwordDefaultValue}
       />
+      <button type="submit">test</button>
     </form>
   );
 }
