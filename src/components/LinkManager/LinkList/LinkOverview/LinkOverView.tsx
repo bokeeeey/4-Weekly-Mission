@@ -3,7 +3,7 @@ import styles from "./LinkOverview.module.scss";
 import { Link as TLink } from "@/src/constants/types";
 import getElapsedTime from "@/src/utils/getElapsedTime";
 import getFormattedDate from "@/src/utils/getFormattedDate";
-import { LinkImageEmptyCaseIcon } from "@/src/asset/";
+import { LinkbraryIcon } from "@/src/asset/";
 import Image from "next/image";
 import getValidUrl from "@/src/utils/getValidUrl";
 
@@ -17,7 +17,6 @@ export default function LinkOverview({ link }: LinkOverview) {
   const formatDate = getFormattedDate(createdAt);
 
   // 서버 Image-url이 문제가 있어서 그냥 null처리 했읍니다
-
   const imageSource = getValidUrl(imageUrl);
 
   return (
@@ -28,7 +27,7 @@ export default function LinkOverview({ link }: LinkOverview) {
         </figure>
       ) : (
         <figure className={styles.emptyCaseBox}>
-          <LinkImageEmptyCaseIcon />
+          <LinkbraryIcon width="133" height="24" opacity="0.2" />
         </figure>
       )}
       <div className={styles.caption}>
