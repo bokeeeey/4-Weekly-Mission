@@ -10,6 +10,7 @@ interface InputField {
   icon?: string;
   isError?: boolean;
   placeholder?: string;
+  label?: boolean;
 }
 
 export default function InputField({
@@ -17,6 +18,7 @@ export default function InputField({
   name,
   icon,
   placeholder,
+  label,
   isError = false,
 }: InputField) {
   const [inputType, setInputType] = useState(type);
@@ -55,20 +57,11 @@ export default function InputField({
     setBorderColor("default");
   };
 
-  const errorState = isError ? "error" : "";
-
   const eyeToggleIcon = isVisible ? <EyeOnIcon /> : <EyeOffIcon />;
-
-  // errorMessage도 그냥 받아서 쓸까...
-  const errorMessage =
-    name === "email"
-      ? "이메일을 입력해 주세요"
-      : name === "password"
-      ? "비밀번호를 입력해 주세요"
-      : "";
 
   return (
     <div className={styles.inputField}>
+      <label>{name}</label>
       <Input
         className={borderColor}
         type={inputType}
@@ -79,7 +72,7 @@ export default function InputField({
         onInputBlur={handleInputBlur}
         onInputFocus={handleInputFocus}
       />
-      {isError && <span className={styles.errorMessage}>{errorMessage}</span>}
+      {/* {isError && <span className={styles.errorMessage}>{errorMessage}</span>} */}
       {icon === "eyeToggle" && (
         <button
           type="button"
