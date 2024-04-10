@@ -9,16 +9,48 @@ interface FieldValues {
   email: string;
   password: string;
 
-  // error 객체는 따로 분리해보고 싶었습니다
+  // error 는 따로 분리해보고 싶었습니다
   emailError?: string;
   passwordError?: string;
 }
 
+// Response body
+// {
+//   "error": {
+//     "name": "AuthApiError",
+//     "message": "Invalid login credentials",
+//     "status": 400
+//   }
+// }
+
 export default function SignInForm() {
   const {
     register,
+    handleSubmit,
+    setError,
     formState: { errors },
   } = useForm<FieldValues>({ mode: "onBlur" });
+
+  // 이부분 잘 모르겠네여 post로 보내는게 맞는지 아니면 그냥 fetch 만 걸어서 보내는게 맞는지 의문입니다.
+  const onSubmit = async (data) => {
+    try {
+      const res = await fetch("https://bootcamp-api.codeit.kr/api/sign-in", {
+        body: JSON.parse(data),
+      });
+      const req = await res.json();
+      console.log(req);
+    } catch (error) {
+      console.log(data, "실패");
+
+      setError("emailError", {
+        message: "이메일을 확인해 주세요.",
+      });
+      setError("passwordError", {
+        message: "비밀번호를 확인해 주세요.",
+      });
+    }
+  };
+
   return (
     <div className={styles.signForm}>
       <div className={styles.logoBox}>
@@ -30,7 +62,11 @@ export default function SignInForm() {
           <Link href="/signup">회원 가입하기</Link>
         </div>
       </div>
-      <form className={styles.form}>
+      <form
+        id="signInForm"
+        onSubmit={handleSubmit(onSubmit)}
+        className={styles.form}
+      >
         <div className={styles.inputBox}>
           <label htmlFor="email">이메일</label>
           <input
@@ -58,6 +94,10 @@ export default function SignInForm() {
             placeholder="비밀번호를 입력해 주세요."
             {...register("passwordError", {
               required: "비밀번호를 입력해 주세요",
+              // pattern: {
+              //   value: EMAIL_REGEX,
+              //   message: "올바른 비밀번호가 아닙니다.",
+              // },
             })}
           />
           {errors.passwordError?.message && (
