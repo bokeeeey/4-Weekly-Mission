@@ -1,0 +1,23 @@
+.inputField {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  position: relative;
+  max-width: 350px;
+
+  .errorMessage {
+    color: var(--Linkbrary-red, #ff5b56);
+    font-size: 14px;
+    font-weight: 400;
+  }
+
+  .eyeToggleButton {
+    border: none;
+    background: none;
+    position: absolute;
+    top: 22px;
+    right: 16px;
+    padding: 0;
+  }
+}

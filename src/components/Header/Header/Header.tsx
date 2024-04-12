@@ -13,7 +13,7 @@ export default async function Header() {
     <header className={styles.header}>
       <nav className={styles.headerBox}>
         <Link href="/">
-          <LinkbraryIcon />
+          <LinkbraryIcon width="133" height="24" />
         </Link>
         {userData ? (
           <section className={styles.profileBox}>

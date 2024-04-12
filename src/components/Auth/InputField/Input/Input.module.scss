@@ -1,0 +1,25 @@
+.input {
+  display: flex;
+  width: 350px;
+  padding: 18px 16px;
+  align-items: center;
+  border-radius: 8px;
+  background: var(--Linkbrary-white, #fff);
+
+  color: var(--Linkbrary-gray100, #373740);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px; /* 150% */
+}
+
+.default {
+  border: 1px solid var(--Linkbrary-gray20, #ccd5e3);
+}
+
+.focus {
+  border: 1px solid var(--Linkbrary-primary-color, #6d6afe);
+}
+
+.error {
+  border: 1px solid var(--Linkbrary-red, #ff5b56);
+}
