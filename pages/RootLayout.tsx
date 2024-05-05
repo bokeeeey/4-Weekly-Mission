@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { ReactNode } from "react";
+import { Footer, GNB } from "../src/common/components";
 
 interface RootLayoutProps {
   children: ReactNode;
@@ -13,10 +14,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <div>
-      <div>헤더입니다</div>
+    <>
+      <GNB />
       <div>{children}</div>
-      <div>푸터입니다</div>
-    </div>
+      <Footer />
+    </>
   );
 }

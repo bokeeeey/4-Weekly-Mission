@@ -1,0 +1,38 @@
+.gnb {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 32px;
+  background: var(--Linkbrary-bg, #f0f6ff);
+
+  .gnbBox {
+    width: 100%;
+    max-width: 1920px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .button {
+      color: var(--Grey-Light, #f5f5f5);
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: normal;
+
+      display: flex;
+      width: 128px;
+      padding: 16px 20px;
+      justify-content: center;
+      align-items: center;
+      flex-shrink: 0;
+
+      border-radius: 8px;
+      border: none;
+      background: var(
+        --gra-purpleblue-to-skyblue,
+        linear-gradient(91deg, #6d6afe 0.12%, #6ae3fe 101.84%)
+      );
+    }
+  }
+}

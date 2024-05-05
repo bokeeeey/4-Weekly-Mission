@@ -1,0 +1,45 @@
+.header {
+  background: #f0f6ff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  padding: 70px 32px 0;
+
+  .text {
+    text-align: center;
+    font-size: 64px;
+    font-weight: 700;
+    line-height: 80px;
+    color: #000;
+
+    .textGradient {
+      background: linear-gradient(91deg, #6d6afe 17.28%, #ff9f9f 74.98%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  }
+
+  .button {
+    display: flex;
+    width: 350px;
+    padding: 16px 20px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    color: var(--Grey-Light, #f5f5f5);
+    font-size: 18px;
+    font-weight: 600;
+    line-height: normal;
+
+    border: none;
+    border-radius: 8px;
+    background: var(
+      --gra-purpleblue-to-skyblue,
+      linear-gradient(91deg, #6d6afe 0.12%, #6ae3fe 101.84%)
+    );
+  }
+}
