@@ -1,8 +1,8 @@
 import classNames from "classnames/bind";
 import { LogoBox, SignInForm } from "@/src/layout/auth";
+import { ROUTER } from "@/src/common/constants";
 
 import styles from "./SignInPage.module.scss";
-import { ROUTER } from "@/src/common/constants";
 
 const cn = classNames.bind(styles);
 

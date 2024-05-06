@@ -10,6 +10,10 @@
   .error {
     position: absolute;
     bottom: -24px;
+
     color: var(--Linkbrary-red, #ff5b56);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: normal;
   }
 }

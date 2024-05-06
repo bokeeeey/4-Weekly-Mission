@@ -9,3 +9,5 @@ export { default as Ic_Instagram } from "./svgs/ic_instagram";
 export { default as Ic_Youtube } from "./svgs/ic_youtube";
 export { default as Ic_Twitter } from "./svgs/ic_twitter";
 export { default as Ic_Facebook } from "./svgs/ic_facebook";
+export { default as Ic_Eye_On } from "./svgs/ic_eye_on";
+export { default as Ic_Eye_Off } from "./svgs/ic_eye_off";

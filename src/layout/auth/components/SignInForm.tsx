@@ -9,6 +9,7 @@ const cn = classNames.bind(styles);
 
 const regExpEm =
   /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+// const regExgPw = /^[A-Za-z0-9]{6,12}$/;
 
 export default function SignInForm() {
   const {
@@ -50,6 +51,7 @@ export default function SignInForm() {
         label="비밀번호"
         type="password"
         placeholder="비밀번호를 입력해 주세요"
+        suffixIcon
         errorMessage={errors.password?.message}
         {...register("password", {
           required: "비밀번호를 입력해 주세요",

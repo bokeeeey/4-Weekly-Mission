@@ -16,7 +16,9 @@ interface LogoBoxProps {
 export default function LogoBox({ text, href, hrefText }: LogoBoxProps) {
   return (
     <header className={cn("logobox")}>
-      <Ic_Logo width="210" height="38" />
+      <Link href={ROUTER.HOME}>
+        <Ic_Logo width="210" height="38" />
+      </Link>
       <hgroup className={cn("textBox")}>
         {text}
         <span className={cn("link")}>
