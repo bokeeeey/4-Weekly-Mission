@@ -1,0 +1,15 @@
+.inputField {
+  position: relative;
+  width: 100%;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 12px;
+
+  .error {
+    position: absolute;
+    bottom: -24px;
+    color: var(--Linkbrary-red, #ff5b56);
+  }
+}

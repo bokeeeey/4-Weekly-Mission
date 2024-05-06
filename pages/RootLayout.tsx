@@ -14,10 +14,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <>
+    <div>
       <GNB />
       <div>{children}</div>
       <Footer />
-    </>
+    </div>
   );
 }

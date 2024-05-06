@@ -1,11 +1,18 @@
-import { RootLayout } from "@/src/layout";
-import "@/styles/reset.css";
+import { NextPage } from "next";
 import type { AppProps } from "next/app";
+import { ReactElement, ReactNode } from "react";
 
-export default function App({ Component, pageProps }: AppProps) {
-  return (
-    <RootLayout>
-      <Component {...pageProps} />
-    </RootLayout>
-  );
+import "@/styles/reset.css";
+
+type NextPageWithLayout = NextPage & {
+  getLayout?: (page: ReactElement) => ReactNode;
+};
+
+type AppPropsWithLayout = AppProps & {
+  Component: NextPageWithLayout;
+};
+
+export default function App({ Component, pageProps }: AppPropsWithLayout) {
+  const getLayout = Component.getLayout ?? ((page) => page);
+  return getLayout(<Component {...pageProps} />);
 }
