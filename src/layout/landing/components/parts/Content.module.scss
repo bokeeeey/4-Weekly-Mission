@@ -1,0 +1,29 @@
+.contentBox {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 158px;
+  padding: 50px 32px;
+
+  .textBox {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .title {
+      color: #000;
+      font-size: 48px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      flex-shrink: 0;
+
+      .gradient {
+        background: linear-gradient(96deg, #fe8a8a 1.72%, #a4ceff 74.97%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+    }
+  }
+}

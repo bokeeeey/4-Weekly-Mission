@@ -18,14 +18,15 @@ export default function Header() {
       <Link href={ROUTER.SIGN_UP}>
         <button className={cn("button")}>링크 추가하기</button>
       </Link>
-      <figure>
-        <Image
-          src={Img_Example}
-          alt="예시이미지"
-          style={{ objectFit: "contain" }}
-          placeholder="blur"
-        />
-      </figure>
+      <Image
+        src={Img_Example}
+        alt="예시이미지"
+        width={0}
+        height={0}
+        style={{ width: "100%", height: "auto" }}
+        placeholder="blur"
+        property="true"
+      />
     </header>
   );
 }
