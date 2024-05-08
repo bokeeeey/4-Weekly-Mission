@@ -2,6 +2,8 @@ import classNames from "classnames/bind";
 import InputField from "./InputField/InputField";
 
 import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { postSignIn } from "@/src/common/apis";
 
 import styles from "./AuthForm.module.scss";
 
@@ -12,10 +14,12 @@ const regExpEm =
 // const regExgPw = /^[A-Za-z0-9]{6,12}$/;
 
 export default function SignInForm() {
+  const queryClient = useQueryClient();
   const {
     register,
     handleSubmit,
     setValue,
+    setError,
     formState: { errors },
   } = useForm({
     mode: "all",
@@ -25,8 +29,32 @@ export default function SignInForm() {
     },
   });
 
+  const loginMutation = useMutation({
+    mutationFn: postSignIn,
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["accessToken"],
+      });
+      queryClient.invalidateQueries({
+        queryKey: ["refreshToken"],
+      });
+    },
+  });
+
   const onSubmit: SubmitHandler<FieldValues> = (payload) => {
     console.log(payload);
+    loginMutation.mutate(payload, {
+      onSuccess: (response) => {
+        // console.log("로그인 성공", response);
+        localStorage.setItem("accessToken", response.accessToken);
+        localStorage.setItem("refreshToken", response.refreshToken);
+      },
+      onError: (error) => {
+        // console.error("mutate 실패", error);
+        setError("email", { message: "이메일을 확인해 주세요" });
+        setError("password", { message: "비밀번호를 확인해 주세요" });
+      },
+    });
     setValue("password", "");
   };
 
