@@ -30,7 +30,6 @@ export default function Content({ content, id }: ContentProps) {
         height={0}
         style={{ height: "auto", maxWidth: "550px" }}
         placeholder="blur"
-        property="true"
       />
     </article>
   );

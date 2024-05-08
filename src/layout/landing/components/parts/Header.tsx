@@ -25,7 +25,7 @@ export default function Header() {
         height={0}
         style={{ width: "100%", height: "auto" }}
         placeholder="blur"
-        property="true"
+        priority
       />
     </header>
   );
