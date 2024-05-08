@@ -12,6 +12,8 @@ export const SNS_LINK = {
   TWITTER: "https://twitter.com",
   YOUTUBE: "https://www.youtube.com",
   INSTAGRAM: "https://www.instagram.com",
+  GOOGLE: "https://www.google.com",
+  KAKAO: "https://www.kakaocorp.com/page",
 } as const;
 
 export const LANDING_CONTENTS = [

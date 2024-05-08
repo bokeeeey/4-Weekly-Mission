@@ -11,3 +11,5 @@ export { default as Ic_Twitter } from "./svgs/ic_twitter";
 export { default as Ic_Facebook } from "./svgs/ic_facebook";
 export { default as Ic_Eye_On } from "./svgs/ic_eye_on";
 export { default as Ic_Eye_Off } from "./svgs/ic_eye_off";
+export { default as Ic_Google } from "./svgs/ic_google";
+export { default as Ic_Talk } from "./svgs/ic_talk";

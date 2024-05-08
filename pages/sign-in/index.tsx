@@ -1,5 +1,5 @@
 import classNames from "classnames/bind";
-import { LogoBox, SignInForm } from "@/src/layout/auth";
+import { LinkBox, LogoBox, SignInForm } from "@/src/layout/auth";
 import { ROUTER } from "@/src/common/constants";
 
 import styles from "./SignInPage.module.scss";
@@ -15,6 +15,7 @@ export default function SignInPage() {
         hrefText="회원 가입하기"
       />
       <SignInForm />
+      <LinkBox text="소셜 로그인" />
     </main>
   );
 }
