@@ -1,9 +1,8 @@
 import classNames from "classnames/bind";
-import InputField from "./InputField/InputField";
-
 import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { postSignIn } from "@/src/common/apis";
+import InputField from "./InputField/InputField";
 
 import styles from "./AuthForm.module.scss";
 
@@ -11,7 +10,6 @@ const cn = classNames.bind(styles);
 
 const regExpEm =
   /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-// const regExgPw = /^[A-Za-z0-9]{6,12}$/;
 
 export default function SignInForm() {
   const queryClient = useQueryClient();
