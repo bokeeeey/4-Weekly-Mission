@@ -1,8 +1,8 @@
 import classNames from "classnames/bind";
 import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { postSignIn } from "@/src/common/apis";
 import InputField from "./InputField/InputField";
+import { postSignIn } from "@/src/common/apis";
 
 import styles from "./AuthForm.module.scss";
 
@@ -47,8 +47,7 @@ export default function SignInForm() {
         localStorage.setItem("accessToken", response.accessToken);
         localStorage.setItem("refreshToken", response.refreshToken);
       },
-      onError: (error) => {
-        // console.error("mutate 실패", error);
+      onError: () => {
         setError("email", { message: "이메일을 확인해 주세요" });
         setError("password", { message: "비밀번호를 확인해 주세요" });
       },

@@ -7,7 +7,7 @@ export default function Ic_Talk() {
       viewBox="0 0 26 24"
       fill="none"
     >
-      <g clip-path="url(#clip0_6958_40529)">
+      <g clipPath="url(#clip0_6958_40529)">
         <path
           d="M9.50125 11.1897H10.9988L10.25 9.06152L9.50125 11.1897Z"
           fill="#331D1E"

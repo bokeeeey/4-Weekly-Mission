@@ -1,10 +1,10 @@
 import classNames from "classnames/bind";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import InputField from "./InputField/InputField";
+import { checkEmail, postSignUp } from "@/src/common/apis";
 
 import styles from "./AuthForm.module.scss";
-import { checkEmail, postSignUp } from "@/src/common/apis";
 
 const cn = classNames.bind(styles);
 
@@ -75,8 +75,9 @@ export default function SignUpForm() {
             value: regExpEm,
             message: "올바른 이메일 주소가 아닙니다",
           },
-          onChange: (value) => {
-            confirmEmail.mutate(value, {
+          onBlur: (e) => {
+            const emailValue = e.target.value;
+            confirmEmail.mutate(emailValue, {
               onSuccess: (response) => {
                 if (!response.ok) {
                   setError("email", { message: response.message });
