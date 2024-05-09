@@ -1,12 +1,21 @@
 import classNames from "classnames/bind";
-import { ROUTER } from "@/src/common/constants";
+import { useRouter } from "next/router";
 import { LinkBox, LogoBox, SignUpForm } from "@/src/layout/auth";
+import { ROUTER } from "@/src/common/constants";
 
 import styles from "../sign-in/SignInPage.module.scss";
 
 const cn = classNames.bind(styles);
 
 export default function SignUpPage() {
+  const router = useRouter();
+
+  const token = localStorage.getItem("accessToken");
+
+  if (token) {
+    router.push(ROUTER.FOLDER);
+  }
+
   return (
     <main className={cn("page")}>
       <LogoBox

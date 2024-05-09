@@ -5,6 +5,7 @@ export const ROUTER = {
   HOME: "/",
   SIGN_IN: "sign-in",
   SIGN_UP: "sign-up",
+  FOLDER: "/folder",
 } as const;
 
 export const SNS_LINK = {

@@ -5,6 +5,7 @@ import InputField from "./InputField/InputField";
 import { checkEmail, postSignUp } from "@/src/common/apis";
 
 import styles from "./AuthForm.module.scss";
+import { useRouter } from "next/router";
 
 const cn = classNames.bind(styles);
 
@@ -13,6 +14,7 @@ const regExpEm =
 const regExgPw = /^[A-Za-z0-9]{8,20}$/;
 
 export default function SignUpForm() {
+  const router = useRouter();
   const queryClient = useQueryClient();
   const {
     register,
@@ -29,11 +31,17 @@ export default function SignUpForm() {
     },
   });
 
-  const confirmEmail = useMutation({
+  const { mutate: checkEmailMutation } = useMutation({
     mutationFn: checkEmail,
+    onSuccess: (response) => {
+      console.log(response);
+      if (!response.ok && !errors.email) {
+        setError("email", { message: response.message });
+      }
+    },
   });
 
-  const signUpMutation = useMutation({
+  const { mutate: signUpMutation } = useMutation({
     mutationFn: postSignUp,
     onSuccess: () => {
       queryClient.invalidateQueries({
@@ -47,11 +55,13 @@ export default function SignUpForm() {
 
   const onSubmit: SubmitHandler<FieldValues> = (payload) => {
     console.log(payload);
-    signUpMutation.mutate(payload, {
+    signUpMutation(payload, {
       onSuccess: (response) => {
         // console.log("회원가입 성공", response);
         localStorage.setItem("accessToken", response.accessToken);
         localStorage.setItem("refreshToken", response.refreshToken);
+
+        // router.replace(ROUTER.FOLDER);
       },
       onError: () => {
         setError("email", { message: "이메일을 확인해 주세요" });
@@ -77,13 +87,7 @@ export default function SignUpForm() {
           },
           onBlur: (e) => {
             const emailValue = e.target.value;
-            confirmEmail.mutate(emailValue, {
-              onSuccess: (response) => {
-                if (!response.ok) {
-                  setError("email", { message: response.message });
-                }
-              },
-            });
+            checkEmailMutation(emailValue);
           },
         })}
       />

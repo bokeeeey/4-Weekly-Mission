@@ -65,11 +65,6 @@ export async function checkEmail(email: string) {
       }
     );
 
-    if (!response.ok) {
-      const error = await response.json();
-      return error;
-    }
-
     return await response.json();
   } catch (error) {
     console.error("checkEmail 실패", error);

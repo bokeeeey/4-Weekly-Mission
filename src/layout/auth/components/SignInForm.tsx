@@ -1,8 +1,10 @@
 import classNames from "classnames/bind";
 import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useRouter } from "next/router";
 import InputField from "./InputField/InputField";
 import { postSignIn } from "@/src/common/apis";
+import { ROUTER } from "@/src/common/constants";
 
 import styles from "./AuthForm.module.scss";
 
@@ -12,6 +14,7 @@ const regExpEm =
   /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 
 export default function SignInForm() {
+  const router = useRouter();
   const queryClient = useQueryClient();
   const {
     register,
@@ -27,7 +30,7 @@ export default function SignInForm() {
     },
   });
 
-  const loginMutation = useMutation({
+  const { mutate: loginMutation } = useMutation({
     mutationFn: postSignIn,
     onSuccess: () => {
       queryClient.invalidateQueries({
@@ -41,11 +44,13 @@ export default function SignInForm() {
 
   const onSubmit: SubmitHandler<FieldValues> = (payload) => {
     console.log(payload);
-    loginMutation.mutate(payload, {
+    loginMutation(payload, {
       onSuccess: (response) => {
         // console.log("로그인 성공", response);
         localStorage.setItem("accessToken", response.accessToken);
         localStorage.setItem("refreshToken", response.refreshToken);
+
+        // router.replace(ROUTER.FOLDER);
       },
       onError: () => {
         setError("email", { message: "이메일을 확인해 주세요" });
