@@ -79,13 +79,15 @@ export async function checkEmail(email: string) {
 export async function getUserData(token: string) {
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/users`,
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/users`,
       {
         headers: { Authorization: `Bearer ${token}` },
       }
     );
 
-    return await response.json();
+    const result = await response.json();
+    // console.log(result);
+    return result;
   } catch (error) {
     console.error("getUserData 실패", error);
     throw error;

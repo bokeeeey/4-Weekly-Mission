@@ -1,10 +1,7 @@
 import { Metadata } from "next";
 import { ReactNode } from "react";
 import { Footer, GNB } from "../src/common/components";
-
-interface RootLayoutProps {
-  children: ReactNode;
-}
+import type { User } from "@/src/common/constants/type";
 
 export const metadata: Metadata = {
   title: "Linkbrary",
@@ -12,10 +9,15 @@ export const metadata: Metadata = {
   // metadataBase: new URL("")
 };
 
-export default function RootLayout({ children }: RootLayoutProps) {
+interface RootLayoutProps {
+  children: ReactNode;
+  userData?: User[];
+}
+
+export default function RootLayout({ children, userData }: RootLayoutProps) {
   return (
     <div>
-      <GNB />
+      <GNB userData={userData} />
       <div>{children}</div>
       <Footer />
     </div>

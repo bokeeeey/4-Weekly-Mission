@@ -1,12 +1,20 @@
 import { ReactNode } from "react";
 import { GetServerSideProps } from "next";
-import { useRouter } from "next/router";
-import { ROUTER } from "@/src/common/constants";
 import RootLayout from "../RootLayout";
+import { getUserData } from "@/src/common/apis";
+import type { User } from "@/src/common/constants/type";
+import { ROUTER } from "@/src/common/constants";
+
+interface FolderPageProps {
+  userData?: User[];
+}
+
+interface getLayoutProps {
+  page: ReactNode;
+  userData?: User[];
+}
 
 export default function FolderPage() {
-  const router = useRouter();
-
   return (
     <div>
       <div>폴더페이지 입니다</div>
@@ -14,8 +22,8 @@ export default function FolderPage() {
   );
 }
 
-FolderPage.getLayout = function getLayout(page: ReactNode) {
-  return <RootLayout>{page}</RootLayout>;
+FolderPage.getLayout = function getLayout({ page, userData }: getLayoutProps) {
+  return <RootLayout userData={userData}>{page}</RootLayout>;
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
@@ -30,19 +38,14 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     };
   }
 
-  return {
-    props: {},
-  };
-
-  // try {
-  //   const userData = await getUserData(token);
-  //   return {
-  //     props: { user: userData },
-  //   };
-  // } catch (error) {
-  //   console.error("Folder ServerSide에러", error);
-  //   return {
-  //     props: { user: null },
-  //   };
-  // }
+  try {
+    const userData = await getUserData(token);
+    return {
+      props: { userData },
+    };
+  } catch {
+    return {
+      props: { userData: [] },
+    };
+  }
 };

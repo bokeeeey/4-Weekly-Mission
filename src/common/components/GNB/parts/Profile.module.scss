@@ -1,0 +1,12 @@
+.profile {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  height: 53px;
+
+  color: var(--Linkbrary-gray100, #373740);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: normal;
+}

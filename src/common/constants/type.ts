@@ -6,3 +6,10 @@ export interface Content {
   img: StaticImageData;
   alt: string;
 }
+
+export interface User {
+  id: number;
+  name: string;
+  image_source: string;
+  email: string;
+}
