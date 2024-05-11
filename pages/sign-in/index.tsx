@@ -4,17 +4,12 @@ import { LinkBox, LogoBox, SignInForm } from "@/src/layout/auth";
 import { ROUTER } from "@/src/common/constants";
 
 import styles from "./SignInPage.module.scss";
+import { GetServerSideProps } from "next";
 
 const cn = classNames.bind(styles);
 
 export default function SignInPage() {
   const router = useRouter();
-
-  const token = localStorage.getItem("accessToken");
-
-  if (token) {
-    router.push(ROUTER.FOLDER);
-  }
 
   return (
     <main className={cn("page")}>
@@ -28,3 +23,21 @@ export default function SignInPage() {
     </main>
   );
 }
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const token = context.req.cookies.accessToken;
+
+  if (token) {
+    console.log("넌 이미 token이 있어");
+    return {
+      redirect: {
+        destination: ROUTER.FOLDER,
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {},
+  };
+};

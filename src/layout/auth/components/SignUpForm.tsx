@@ -1,11 +1,13 @@
 import classNames from "classnames/bind";
+import { useRouter } from "next/router";
 import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+
 import InputField from "./InputField/InputField";
 import { checkEmail, postSignUp } from "@/src/common/apis";
+import { ROUTER } from "@/src/common/constants";
 
 import styles from "./AuthForm.module.scss";
-import { useRouter } from "next/router";
 
 const cn = classNames.bind(styles);
 
@@ -58,10 +60,11 @@ export default function SignUpForm() {
     signUpMutation(payload, {
       onSuccess: (response) => {
         // console.log("회원가입 성공", response);
-        localStorage.setItem("accessToken", response.accessToken);
-        localStorage.setItem("refreshToken", response.refreshToken);
+        // localStorage.setItem("accessToken", response.accessToken);
+        // localStorage.setItem("refreshToken", response.refreshToken);
+        document.cookie = `accessToken=${response.accessToken}; path=${ROUTER.HOME};`;
 
-        // router.replace(ROUTER.FOLDER);
+        router.replace(ROUTER.FOLDER);
       },
       onError: () => {
         setError("email", { message: "이메일을 확인해 주세요" });
