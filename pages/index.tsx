@@ -1,5 +1,5 @@
-import { Landing, RootLayout } from "@/src/layout";
 import { ReactNode } from "react";
+import { Landing, RootLayout } from "@/src/layout";
 
 export default function Home() {
   return <Landing />;

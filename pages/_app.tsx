@@ -12,6 +12,7 @@ type NextPageWithLayout = NextPage & {
 
 type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
+  user: any;
 };
 
 const queryClient = new QueryClient();

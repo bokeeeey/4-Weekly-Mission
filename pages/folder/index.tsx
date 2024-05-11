@@ -1,8 +1,8 @@
+import { ReactNode } from "react";
+import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import { ROUTER } from "@/src/common/constants";
-import { ReactNode } from "react";
 import RootLayout from "../RootLayout";
-import { GetServerSideProps } from "next";
 
 export default function FolderPage() {
   const router = useRouter();
@@ -33,4 +33,16 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   return {
     props: {},
   };
+
+  // try {
+  //   const userData = await getUserData(token);
+  //   return {
+  //     props: { user: userData },
+  //   };
+  // } catch (error) {
+  //   console.error("Folder ServerSide에러", error);
+  //   return {
+  //     props: { user: null },
+  //   };
+  // }
 };

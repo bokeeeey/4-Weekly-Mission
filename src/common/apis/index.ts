@@ -1,5 +1,6 @@
 import { FieldValues } from "react-hook-form";
 
+// sign-in
 export async function postSignIn(payload: FieldValues) {
   try {
     const response = await fetch(
@@ -26,6 +27,7 @@ export async function postSignIn(payload: FieldValues) {
   }
 }
 
+// sign-up
 export async function postSignUp(payload: FieldValues) {
   try {
     const response = await fetch(
@@ -52,6 +54,7 @@ export async function postSignUp(payload: FieldValues) {
   }
 }
 
+// 이메일 중복 check
 export async function checkEmail(email: string) {
   try {
     const response = await fetch(
@@ -68,6 +71,23 @@ export async function checkEmail(email: string) {
     return await response.json();
   } catch (error) {
     console.error("checkEmail 실패", error);
+    throw error;
+  }
+}
+
+// userData
+export async function getUserData(token: string) {
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/users`,
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
+
+    return await response.json();
+  } catch (error) {
+    console.error("getUserData 실패", error);
     throw error;
   }
 }

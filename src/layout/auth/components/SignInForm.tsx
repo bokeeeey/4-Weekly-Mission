@@ -49,8 +49,9 @@ export default function SignInForm() {
     loginMutation(payload, {
       onSuccess: (response) => {
         // console.log("로그인 성공", response);
-        // localStorage.setItem("accessToken", response.accessToken);
-        // localStorage.setItem("refreshToken", response.refreshToken);
+        localStorage.setItem("accessToken", response.accessToken);
+        localStorage.setItem("refreshToken", response.refreshToken);
+
         document.cookie = `accessToken=${response.accessToken}; path=${ROUTER.HOME};`;
 
         router.replace(ROUTER.FOLDER);

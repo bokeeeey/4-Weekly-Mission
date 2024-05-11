@@ -60,8 +60,9 @@ export default function SignUpForm() {
     signUpMutation(payload, {
       onSuccess: (response) => {
         // console.log("회원가입 성공", response);
-        // localStorage.setItem("accessToken", response.accessToken);
-        // localStorage.setItem("refreshToken", response.refreshToken);
+        localStorage.setItem("accessToken", response.accessToken);
+        localStorage.setItem("refreshToken", response.refreshToken);
+
         document.cookie = `accessToken=${response.accessToken}; path=${ROUTER.HOME};`;
 
         router.replace(ROUTER.FOLDER);
