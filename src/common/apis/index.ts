@@ -85,11 +85,26 @@ export async function getUserData(token: string) {
       }
     );
 
-    const result = await response.json();
-    // console.log(result);
-    return result;
+    return await response.json();
   } catch (error) {
     console.error("getUserData 실패", error);
+    throw error;
+  }
+}
+
+// LinksData
+export async function getLinksData(token: string) {
+  try {
+    const respoese = await fetch(
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/folders`,
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
+
+    return await respoese.json();
+  } catch (error) {
+    console.error("getLinksData 실패", error);
     throw error;
   }
 }

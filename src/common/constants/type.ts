@@ -13,3 +13,15 @@ export interface User {
   image_source: string;
   email: string;
 }
+
+export interface TLink {
+  created_at: string;
+  favorite: boolean;
+  id: number;
+  link_count: number;
+  name: string;
+}
+
+export interface LinksData {
+  link: TLink[];
+}

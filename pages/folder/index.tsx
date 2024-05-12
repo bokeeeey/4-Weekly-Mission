@@ -1,12 +1,13 @@
 import { ReactNode } from "react";
 import { GetServerSideProps } from "next";
 import RootLayout from "../RootLayout";
-import { getUserData } from "@/src/common/apis";
-import type { User } from "@/src/common/constants/type";
+import { getLinksData, getUserData } from "@/src/common/apis";
+import type { LinksData, User } from "@/src/common/constants/type";
 import { ROUTER } from "@/src/common/constants";
+import { Folder } from "@/src/layout/folder";
 
 interface FolderPageProps {
-  userData?: User[];
+  LinksData?: LinksData;
 }
 
 interface getLayoutProps {
@@ -14,11 +15,11 @@ interface getLayoutProps {
   userData?: User[];
 }
 
-export default function FolderPage() {
+export default function FolderPage({ LinksData }: FolderPageProps) {
   return (
-    <div>
-      <div>폴더페이지 입니다</div>
-    </div>
+    <>
+      <Folder LinksData={LinksData} />
+    </>
   );
 }
 
@@ -40,8 +41,15 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   try {
     const userData = await getUserData(token);
+    if (!userData || userData.length === 0) {
+      return { props: { userData: [] } };
+    }
+
+    // const userId = userData[0].id;
+    const LinksData = await getLinksData(token);
+
     return {
-      props: { userData },
+      props: { LinksData, userData },
     };
   } catch {
     return {

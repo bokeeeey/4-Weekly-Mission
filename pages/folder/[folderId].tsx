@@ -1,19 +1,28 @@
 import { ReactNode } from "react";
-import { Landing, RootLayout } from "@/src/layout";
 import { GetServerSideProps } from "next";
-import type { User } from "@/src/common/constants/type";
+import RootLayout from "../RootLayout";
 import { getUserData } from "@/src/common/apis";
+import type { User } from "@/src/common/constants/type";
+import { ROUTER } from "@/src/common/constants";
+
+// interface FolderPageProps {
+//   userData?: User[];
+// }
 
 interface getLayoutProps {
   page: ReactNode;
   userData?: User[];
 }
 
-export default function Home() {
-  return <Landing />;
+export default function FolderPage() {
+  return (
+    <div>
+      <div>폴더페이지 입니다</div>
+    </div>
+  );
 }
 
-Home.getLayout = function getLayout({ page, userData }: getLayoutProps) {
+FolderPage.getLayout = function getLayout({ page, userData }: getLayoutProps) {
   return <RootLayout userData={userData}>{page}</RootLayout>;
 };
 
@@ -22,13 +31,15 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   if (!token) {
     return {
-      props: { userData: [] },
+      redirect: {
+        destination: ROUTER.SIGN_IN,
+        permanent: false,
+      },
     };
   }
 
   try {
     const userData = await getUserData(token);
-
     return {
       props: { userData },
     };
