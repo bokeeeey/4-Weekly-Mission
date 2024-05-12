@@ -18,11 +18,11 @@ Home.getLayout = function getLayout({ page, userData }: getLayoutProps) {
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const token = context.req.cookies.accessToken;
+  const token = context.req?.cookies.accessToken;
 
   if (!token) {
     return {
-      props: { userData: [] },
+      props: { userData: null },
     };
   }
 
@@ -34,7 +34,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     };
   } catch {
     return {
-      props: { userData: [] },
+      props: { userData: null },
     };
   }
 };
