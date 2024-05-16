@@ -1,9 +1,9 @@
 import { ReactNode } from "react";
 import { GetServerSideProps } from "next";
 import RootLayout from "../RootLayout";
-import { getUserData } from "@/src/common/apis";
-import type { User } from "@/src/common/constants/type";
-import { ROUTER } from "@/src/common/constants";
+import { getUserData } from "@/src/apis";
+import type { User } from "@/src/types/type";
+import { ROUTER } from "@/src/constants";
 
 // interface FolderPageProps {
 //   userData?: User[];

@@ -1,8 +1,9 @@
 import { ReactNode } from "react";
-import { Landing, RootLayout } from "@/src/layout";
 import { GetServerSideProps } from "next";
-import type { User } from "@/src/common/constants/type";
-import { getUserData } from "@/src/common/apis";
+
+import { LandingContainer, LandingHeader, RootLayout } from "@/src/components";
+import type { User } from "@/src/types/type";
+import { getUserData } from "@/src/apis";
 
 interface getLayoutProps {
   page: ReactNode;
@@ -10,7 +11,12 @@ interface getLayoutProps {
 }
 
 export default function Home() {
-  return <Landing />;
+  return (
+    <>
+      <LandingHeader />
+      <LandingContainer />
+    </>
+  );
 }
 
 Home.getLayout = function getLayout({ page, userData }: getLayoutProps) {

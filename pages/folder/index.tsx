@@ -1,10 +1,10 @@
 import { ReactNode } from "react";
 import { GetServerSideProps } from "next";
 import RootLayout from "../RootLayout";
-import { getLinksData, getUserData } from "@/src/common/apis";
-import type { LinksData, User } from "@/src/common/constants/type";
-import { ROUTER } from "@/src/common/constants";
-import { Folder } from "@/src/layout/folder";
+import { getLinksData, getUserData } from "@/src/apis";
+import type { LinksData, User } from "@/src/types/type";
+import { ROUTER } from "@/src/constants";
+import { Folder } from "@/src/components/folder";
 
 interface FolderPageProps {
   LinksData?: LinksData;

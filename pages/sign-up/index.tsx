@@ -1,10 +1,10 @@
 import classNames from "classnames/bind";
+import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
-import { LinkBox, LogoBox, SignUpForm } from "@/src/layout/auth";
-import { ROUTER } from "@/src/common/constants";
+import { LinkBox, LogoBox, SignUpForm } from "@/src/components";
+import { ROUTER } from "@/src/constants";
 
 import styles from "../sign-in/SignInPage.module.scss";
-import { GetServerSideProps } from "next";
 
 const cn = classNames.bind(styles);
 

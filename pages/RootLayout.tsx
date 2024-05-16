@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { ReactNode } from "react";
-import { Footer, GNB } from "../src/common/components";
-import type { User } from "@/src/common/constants/type";
+import { Footer, GNB } from "../src/components/common";
+import type { User } from "@/src/types/type";
 
 export const metadata: Metadata = {
   title: "Linkbrary",

@@ -1,7 +1,7 @@
 import classNames from "classnames/bind";
 import { useRouter } from "next/router";
-import { LinkBox, LogoBox, SignInForm } from "@/src/layout/auth";
-import { ROUTER } from "@/src/common/constants";
+import { LinkBox, LogoBox, SignInForm } from "@/src/components";
+import { ROUTER } from "@/src/constants";
 
 import styles from "./SignInPage.module.scss";
 import { GetServerSideProps } from "next";
