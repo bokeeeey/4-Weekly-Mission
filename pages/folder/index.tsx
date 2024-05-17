@@ -1,10 +1,13 @@
 import { ReactNode } from "react";
 import { GetServerSideProps } from "next";
-import RootLayout from "../RootLayout";
+
+import { RootLayout } from "@/src/components";
 import { getLinksData, getUserData } from "@/src/apis";
-import type { LinksData, User } from "@/src/types/type";
 import { ROUTER } from "@/src/constants";
 import { Folder } from "@/src/components/folder";
+
+import type { LinksData, User } from "@/src/types/type";
+import { QueryClient } from "@tanstack/react-query";
 
 interface FolderPageProps {
   LinksData?: LinksData;
@@ -28,6 +31,7 @@ FolderPage.getLayout = function getLayout({ page, userData }: getLayoutProps) {
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
+  const queryClient = new QueryClient();
   const token = context.req.cookies.accessToken;
 
   if (!token) {
@@ -39,21 +43,16 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     };
   }
 
-  try {
-    const userData = await getUserData(token);
-    if (!userData || userData.length === 0) {
-      return { props: { userData: [] } };
-    }
+  await queryClient.prefetchQuery({
+    queryKey: ["accessToken"],
+    queryFn: () => getUserData(token),
+  });
 
-    // const userId = userData[0].id;
-    const LinksData = await getLinksData(token);
+  const userData = queryClient.getQueryData(["accessToken"]);
 
-    return {
-      props: { LinksData, userData },
-    };
-  } catch {
-    return {
-      props: { userData: [] },
-    };
-  }
+  return {
+    props: {
+      userData: userData || null,
+    },
+  };
 };

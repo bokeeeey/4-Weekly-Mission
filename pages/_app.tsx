@@ -1,6 +1,11 @@
 import { ReactElement, ReactNode, useState } from "react";
 import { NextPage } from "next";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import {
+  QueryClient,
+  QueryClientProvider,
+  DehydratedState,
+  HydrationBoundary,
+} from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 import type { AppProps } from "next/app";
@@ -17,6 +22,7 @@ type NextPageWithLayout = NextPage & {
 
 type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
+  dehydratedState: DehydratedState;
 };
 
 export default function App({ Component, pageProps }: AppPropsWithLayout) {
@@ -34,8 +40,10 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
 
   const page = (
     <QueryClientProvider client={queryClient}>
-      <Component {...pageProps} />
-      <ReactQueryDevtools initialIsOpen={false} />
+      <HydrationBoundary state={pageProps.dehydrateState}>
+        <Component {...pageProps} />
+        <ReactQueryDevtools initialIsOpen={false} />
+      </HydrationBoundary>
     </QueryClientProvider>
   );
 

@@ -1,10 +1,11 @@
 import classNames from "classnames/bind";
+import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
+
 import { LinkBox, LogoBox, SignInForm } from "@/src/components";
 import { ROUTER } from "@/src/constants";
 
 import styles from "./SignInPage.module.scss";
-import { GetServerSideProps } from "next";
 
 const cn = classNames.bind(styles);
 
@@ -25,10 +26,9 @@ export default function SignInPage() {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const token = context.req.cookies.accessToken;
+  const token = context.req?.cookies.accessToken;
 
   if (token) {
-    console.log("넌 이미 token이 있어");
     return {
       redirect: {
         destination: ROUTER.FOLDER,

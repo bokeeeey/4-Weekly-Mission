@@ -1,5 +1,6 @@
 import classNames from "classnames/bind";
 import Link from "next/link";
+
 import { Ic_Logo } from "@/public";
 import { ROUTER } from "@/src/constants";
 import { Profile } from "./parts";

@@ -1,13 +1,15 @@
 import { ReactNode } from "react";
 import { GetServerSideProps } from "next";
+import { DehydratedState, QueryClient, dehydrate } from "@tanstack/react-query";
 
 import { LandingContainer, LandingHeader, RootLayout } from "@/src/components";
-import type { User } from "@/src/types/type";
 import { getUserData } from "@/src/apis";
+import type { User } from "@/src/types/type";
 
 interface getLayoutProps {
   page: ReactNode;
   userData?: User[];
+  dehydrateState: DehydratedState;
 }
 
 export default function Home() {
@@ -24,6 +26,7 @@ Home.getLayout = function getLayout({ page, userData }: getLayoutProps) {
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
+  const queryClient = new QueryClient();
   const token = context.req?.cookies.accessToken;
 
   if (!token) {
@@ -32,15 +35,16 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     };
   }
 
-  try {
-    const userData = await getUserData(token);
+  await queryClient.prefetchQuery({
+    queryKey: ["accessToken"],
+    queryFn: () => getUserData(token),
+  });
 
-    return {
-      props: { userData },
-    };
-  } catch {
-    return {
-      props: { userData: null },
-    };
-  }
+  const userData = queryClient.getQueryData(["accessToken"]);
+
+  return {
+    props: {
+      userData: userData || null,
+    },
+  };
 };

@@ -1,5 +1,6 @@
 import classNames from "classnames/bind";
 import Image from "next/image";
+
 import type { User } from "@/src/types/type";
 
 import styles from "./Profile.module.scss";

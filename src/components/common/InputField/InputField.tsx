@@ -1,6 +1,6 @@
 import classNames from "classnames/bind";
 import { InputHTMLAttributes, forwardRef, useState } from "react";
-import { Label, SuffixIcon, Input } from "./index";
+import { Label, SuffixIcon, Input } from "./parts/index";
 
 import styles from "./InputField.module.scss";
 

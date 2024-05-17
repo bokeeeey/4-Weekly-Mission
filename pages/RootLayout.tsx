@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { ReactNode } from "react";
+
 import { Footer, GNB } from "../src/components/common";
 import type { User } from "@/src/types/type";
 
