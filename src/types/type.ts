@@ -22,6 +22,12 @@ export interface Favorite {
   name: string;
 }
 
-// export interface LinksData {
-//   link: TLink[];
-// }
+export interface TLink {
+  id: number;
+  created_at: string;
+  description: string;
+  favorite: boolean;
+  image_source: string;
+  title: string;
+  url: string;
+}

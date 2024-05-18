@@ -11,19 +11,13 @@ import styles from "./LinkOverview.module.scss";
 const cn = classNames.bind(styles);
 
 interface LinkOverviewProps {
-  linkData: TLink;
+  link: TLink;
 }
 
-export default function LinkOverview({ linkData }: LinkOverviewProps) {
-  const {
-    imageSource: imageUrl,
-    createdAt,
-    description,
-    title,
-    url,
-  } = linkData;
-  const createDate = getElapsedTime(createdAt);
-  const formatDate = getFormattedDate(createdAt);
+export default function LinkOverview({ link }: LinkOverviewProps) {
+  const { image_source: imageUrl, created_at, description, title, url } = link;
+  const createDate = getElapsedTime(created_at);
+  const formatDate = getFormattedDate(created_at);
 
   // 서버 Image-url이 문제가 있어서 그냥 null처리 했읍니다
   const imageSource = getValidUrl(imageUrl);
@@ -40,11 +34,11 @@ export default function LinkOverview({ linkData }: LinkOverviewProps) {
         </figure>
       )}
       <div className={cn("caption")}>
-        <time className={cn("updatedAt")} dateTime={createdAt}>
+        <time className={cn("updatedAt")} dateTime={created_at}>
           {createDate}
         </time>
         <p className={cn("description")}>{description}</p>
-        <time className={cn("createdAt")} dateTime={createdAt}>
+        <time className={cn("createdAt")} dateTime={created_at}>
           {formatDate}
         </time>
       </div>

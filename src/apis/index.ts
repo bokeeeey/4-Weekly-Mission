@@ -92,7 +92,7 @@ export async function getUserData(token: string) {
   }
 }
 
-// LinksData
+// FoderList Data
 export async function getFoldersData(token: string) {
   try {
     const respoese = await fetch(
@@ -103,6 +103,23 @@ export async function getFoldersData(token: string) {
     );
 
     return await respoese.json();
+  } catch (error) {
+    console.error("getFoldersData 실패", error);
+    throw error;
+  }
+}
+
+// LinkList Data
+export async function getLinksData(token: string) {
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/links`,
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
+
+    return await response.json();
   } catch (error) {
     console.error("getLinksData 실패", error);
     throw error;
