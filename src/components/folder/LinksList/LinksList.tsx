@@ -1,7 +1,7 @@
 import classNames from "classnames/bind";
 import { useQuery } from "@tanstack/react-query";
 
-import { LinkOverview } from "./LinkOverview";
+import { LinkOverview, LinksEmptyCase } from ".";
 import { getFolderIdLinksData } from "@/src/apis";
 import type { TLink } from "@/src/types/type";
 
@@ -27,10 +27,16 @@ export default function LinksList({ folderId }: LinksListProps) {
   const LINKS = folderId ? folderIdLinksData : totalLinksData;
 
   return (
-    <section className={cn("linkList")}>
-      {LINKS?.map((link) => (
-        <LinkOverview link={link} key={link.id} />
-      ))}
-    </section>
+    <>
+      {LINKS && LINKS.length > 0 ? (
+        <section className={cn("linkList")}>
+          {LINKS.map((link) => (
+            <LinkOverview link={link} key={link.id} />
+          ))}
+        </section>
+      ) : (
+        <LinksEmptyCase />
+      )}
+    </>
   );
 }

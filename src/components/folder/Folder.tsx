@@ -18,6 +18,7 @@ export default function Folder() {
   return (
     <>
       <FavoriteButtonList handleFavoriteClick={handleFavoriteClick} />
+
       <LinksList folderId={folderId} />
     </>
   );

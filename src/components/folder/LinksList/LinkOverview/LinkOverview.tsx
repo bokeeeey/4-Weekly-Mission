@@ -1,6 +1,7 @@
 import classNames from "classnames/bind";
 import Link from "next/link";
 import Image from "next/image";
+import { Skeleton } from "@nextui-org/skeleton";
 
 import { Ic_Logo } from "@/public";
 import { getElapsedTime, getFormattedDate, getValidUrl } from "@/src/utils";
