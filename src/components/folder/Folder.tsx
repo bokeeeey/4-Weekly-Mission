@@ -1,6 +1,10 @@
+import { Suspense, useState } from "react";
+
 import { FavoriteButtonList } from "./LinksList/FavoriteButtonList";
 import type { Favorite, TLink } from "@/src/types/type";
 import LinksList from "./LinksList/LinksList";
+import { useQuery } from "@tanstack/react-query";
+import { getFolderIdLinksData } from "@/src/apis";
 
 interface FolderProps {
   favorites?: Favorite[];
@@ -8,10 +12,21 @@ interface FolderProps {
 }
 
 export default function Folder({ favorites, linksData }: FolderProps) {
-  // console.log(linksData);
+  const [folderId, setFolderId] = useState<number | null>(null);
+
+  const { data: folderIdLinksData } = useQuery({
+    queryKey: ["linksData", folderId],
+    queryFn: () => getFolderIdLinksData(folderId),
+    enabled: folderId !== null,
+  });
 
   const handleFavoriteClick = (favorite?: Favorite | null) => {
-    console.log(favorite);
+    if (favorite) {
+      setFolderId(favorite.id);
+      return;
+    }
+
+    setFolderId(null);
   };
 
   return (
@@ -20,7 +35,10 @@ export default function Folder({ favorites, linksData }: FolderProps) {
         favorites={favorites}
         handleFavoriteClick={handleFavoriteClick}
       />
-      <LinksList linksData={linksData} />
+
+      <Suspense fallback={<div>로딩중이에요~</div>}>
+        <LinksList linksData={folderId ? folderIdLinksData : linksData} />
+      </Suspense>
     </>
   );
 }

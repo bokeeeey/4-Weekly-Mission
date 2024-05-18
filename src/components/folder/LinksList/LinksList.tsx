@@ -11,6 +11,8 @@ interface LinksListProps {
 }
 
 export default function LinksList({ linksData }: LinksListProps) {
+  console.log(linksData);
+
   return (
     <section className={cn("linkList")}>
       {linksData?.map((link) => (

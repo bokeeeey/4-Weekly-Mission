@@ -125,3 +125,21 @@ export async function getLinksData(token: string) {
     throw error;
   }
 }
+
+// FolderId LinksData
+export async function getFolderIdLinksData(folderId: number | null) {
+  if (!folderId) {
+    return null;
+  }
+
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/folders/${folderId}/links`
+    );
+
+    return await response.json();
+  } catch (error) {
+    console.error("getFolderIdLinksData 실패", error);
+    throw error;
+  }
+}
