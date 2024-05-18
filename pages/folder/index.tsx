@@ -1,16 +1,15 @@
 import { ReactNode } from "react";
 import { GetServerSideProps } from "next";
-
-import { RootLayout } from "@/src/components";
-import { getLinksData, getUserData } from "@/src/apis";
-import { ROUTER } from "@/src/constants";
-import { Folder } from "@/src/components/folder";
-
-import type { LinksData, User } from "@/src/types/type";
 import { QueryClient } from "@tanstack/react-query";
 
+import { Folder, RootLayout } from "@/src/components";
+import { getFoldersData, getUserData } from "@/src/apis";
+import { ROUTER } from "@/src/constants";
+
+import type { Favorite, User } from "@/src/types/type";
+
 interface FolderPageProps {
-  LinksData?: LinksData;
+  favorites?: Favorite[];
 }
 
 interface getLayoutProps {
@@ -18,10 +17,10 @@ interface getLayoutProps {
   userData?: User[];
 }
 
-export default function FolderPage({ LinksData }: FolderPageProps) {
+export default function FolderPage({ favorites }: FolderPageProps) {
   return (
     <>
-      <Folder LinksData={LinksData} />
+      <Folder favorites={favorites} />
     </>
   );
 }
@@ -32,7 +31,7 @@ FolderPage.getLayout = function getLayout({ page, userData }: getLayoutProps) {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const queryClient = new QueryClient();
-  const token = context.req.cookies.accessToken;
+  const token = context.req?.cookies.accessToken;
 
   if (!token) {
     return {
@@ -50,9 +49,17 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   const userData = queryClient.getQueryData(["accessToken"]);
 
+  await queryClient.prefetchQuery({
+    queryKey: ["favorites"],
+    queryFn: () => getFoldersData(token),
+  });
+
+  const favorites = queryClient.getQueryData(["favorites"]);
+
   return {
     props: {
       userData: userData || null,
+      favorites: favorites || null,
     },
   };
 };

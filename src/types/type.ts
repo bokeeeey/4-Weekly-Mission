@@ -14,7 +14,7 @@ export interface User {
   email: string;
 }
 
-export interface TLink {
+export interface Favorite {
   created_at: string;
   favorite: boolean;
   id: number;
@@ -22,6 +22,6 @@ export interface TLink {
   name: string;
 }
 
-export interface LinksData {
-  link: TLink[];
-}
+// export interface LinksData {
+//   link: TLink[];
+// }

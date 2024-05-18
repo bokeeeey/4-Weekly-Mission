@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import { GetServerSideProps } from "next";
-import { DehydratedState, QueryClient, dehydrate } from "@tanstack/react-query";
+import { QueryClient } from "@tanstack/react-query";
 
 import { LandingContainer, LandingHeader, RootLayout } from "@/src/components";
 import { getUserData } from "@/src/apis";
@@ -9,7 +9,6 @@ import type { User } from "@/src/types/type";
 interface getLayoutProps {
   page: ReactNode;
   userData?: User[];
-  dehydrateState: DehydratedState;
 }
 
 export default function Home() {

@@ -93,7 +93,7 @@ export async function getUserData(token: string) {
 }
 
 // LinksData
-export async function getLinksData(token: string) {
+export async function getFoldersData(token: string) {
   try {
     const respoese = await fetch(
       `${process.env.NEXT_PUBLIC_API_BASE_URL}/folders`,
