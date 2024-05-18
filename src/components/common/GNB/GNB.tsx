@@ -4,7 +4,6 @@ import Link from "next/link";
 import { Ic_Logo } from "@/public";
 import { ROUTER } from "@/src/constants";
 import { Profile } from "./parts";
-
 import type { User } from "@/src/types/type";
 
 import styles from "./GNB.module.scss";

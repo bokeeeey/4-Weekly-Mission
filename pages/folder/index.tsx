@@ -1,16 +1,19 @@
 import { ReactNode } from "react";
 import { GetServerSideProps } from "next";
-import { QueryClient } from "@tanstack/react-query";
+import {
+  DehydratedState,
+  HydrationBoundary,
+  QueryClient,
+  dehydrate,
+} from "@tanstack/react-query";
 
 import { Folder, RootLayout } from "@/src/components";
 import { getFoldersData, getLinksData, getUserData } from "@/src/apis";
 import { ROUTER } from "@/src/constants";
-
-import type { Favorite, TLink, User } from "@/src/types/type";
+import type { User } from "@/src/types/type";
 
 interface FolderPageProps {
-  favorites?: Favorite[];
-  linksData?: TLink[];
+  dehydratedState: DehydratedState;
 }
 
 interface getLayoutProps {
@@ -18,10 +21,12 @@ interface getLayoutProps {
   userData?: User[];
 }
 
-export default function FolderPage({ favorites, linksData }: FolderPageProps) {
+export default function FolderPage({ dehydratedState }: FolderPageProps) {
   return (
     <>
-      <Folder favorites={favorites} linksData={linksData} />
+      <HydrationBoundary state={dehydratedState}>
+        <Folder />
+      </HydrationBoundary>
     </>
   );
 }
@@ -32,10 +37,10 @@ FolderPage.getLayout = function getLayout({ page, userData }: getLayoutProps) {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const queryClient = new QueryClient();
-  const token = context.req?.cookies.accessToken;
+  const TOKEN = context.req?.cookies.accessToken;
 
   // 토큰이 없는경우 예외처리
-  if (!token) {
+  if (!TOKEN) {
     return {
       redirect: {
         destination: ROUTER.SIGN_IN,
@@ -44,35 +49,33 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     };
   }
 
-  // userData를 받아서 header, GNB로 전달
+  // userData prefetch
   await queryClient.prefetchQuery({
-    queryKey: ["accessToken"],
-    queryFn: () => getUserData(token),
+    queryKey: ["userData"],
+    queryFn: () => getUserData(TOKEN),
   });
 
-  const userData = queryClient.getQueryData(["accessToken"]);
+  const userData = queryClient.getQueryData(["userData"]);
 
-  // Folder List를 받아서 FavoriteButton으로 전달
+  // Folder List prefetch
   await queryClient.prefetchQuery({
     queryKey: ["favorites"],
-    queryFn: () => getFoldersData(token),
+    queryFn: () => getFoldersData(TOKEN),
   });
 
-  const favorites = queryClient.getQueryData(["favorites"]);
-
-  // LinksData를 받아서 LinkList로 전달
+  // LinksData prefetch
   await queryClient.prefetchQuery({
     queryKey: ["linksData"],
-    queryFn: () => getLinksData(token),
+    queryFn: () => getLinksData(TOKEN),
   });
 
-  const linksData = queryClient.getQueryData(["linksData"]);
+  // 캐싱 데이터 dehydrateState로 설정
+  const dehydratedState = dehydrate(queryClient);
 
   return {
     props: {
       userData: userData || null,
-      favorites: favorites || null,
-      linksData: linksData || null,
+      dehydratedState,
     },
   };
 };

@@ -127,11 +127,7 @@ export async function getLinksData(token: string) {
 }
 
 // FolderId LinksData
-export async function getFolderIdLinksData(folderId: number | null) {
-  if (!folderId) {
-    return null;
-  }
-
+export async function getFolderIdLinksData(folderId: number) {
   try {
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_API_BASE_URL}/folders/${folderId}/links`

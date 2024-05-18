@@ -1,5 +1,8 @@
 import classNames from "classnames/bind";
+import { useQuery } from "@tanstack/react-query";
+
 import { LinkOverview } from "./LinkOverview";
+import { getFolderIdLinksData } from "@/src/apis";
 import type { TLink } from "@/src/types/type";
 
 import styles from "./LinksList.module.scss";
@@ -7,15 +10,25 @@ import styles from "./LinksList.module.scss";
 const cn = classNames.bind(styles);
 
 interface LinksListProps {
-  linksData?: TLink[];
+  folderId?: number | null;
 }
 
-export default function LinksList({ linksData }: LinksListProps) {
-  console.log(linksData);
+export default function LinksList({ folderId }: LinksListProps) {
+  const { data: totalLinksData } = useQuery<TLink[]>({
+    queryKey: ["linksData"],
+  });
+
+  const { data: folderIdLinksData } = useQuery<TLink[]>({
+    queryKey: ["linksData", folderId],
+    queryFn: () => getFolderIdLinksData(folderId!),
+    enabled: !!folderId === true,
+  });
+
+  const LINKS = folderId ? folderIdLinksData : totalLinksData;
 
   return (
     <section className={cn("linkList")}>
-      {linksData?.map((link) => (
+      {LINKS?.map((link) => (
         <LinkOverview link={link} key={link.id} />
       ))}
     </section>
