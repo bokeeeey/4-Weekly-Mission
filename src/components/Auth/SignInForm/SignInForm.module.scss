@@ -1,0 +1,24 @@
+.signForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 30vh auto;
+  gap: 32px;
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    .inputBox {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+
+      .errorMessage {
+        color: var(--Linkbrary-red, #ff5b56);
+      }
+    }
+  }
+}
